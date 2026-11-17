@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Vyrn's sharing files (docs/dev/package.md section 9). install.sh copies this to
+     <data home>/mime/packages/vyrn.xml and runs update-mime-database. Both are ZIP files whose first entry is a
+     stored "mimetype" file, so bytes 30.. are "mimetype" followed by the type: the magic rules below match that,
+     even when the file was renamed. -->
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+  <mime-type type="application/x-vyrn-project">
+    <comment>Vyrn project</comment>
+    <sub-class-of type="application/zip"/>
+    <generic-icon name="application-x-vyrn-project"/>
+    <glob pattern="*.vrlp" weight="60"/>
+    <magic priority="80">
+      <match type="string" offset="30" value="mimetypeapplication/x-vyrn-project"/>
+    </magic>
+  </mime-type>
+  <mime-type type="application/x-vyrn-brain">
+    <comment>Vyrn trained AI</comment>
+    <sub-class-of type="application/zip"/>
+    <generic-icon name="application-x-vyrn-brain"/>
+    <glob pattern="*.vrl" weight="60"/>
+    <magic priority="80">
+      <match type="string" offset="30" value="mimetypeapplication/x-vyrn-brain"/>
+    </magic>
+  </mime-type>
+</mime-info>

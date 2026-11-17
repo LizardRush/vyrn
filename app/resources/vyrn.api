@@ -1,0 +1,16 @@
+vyrn.screen(x=None, y=None, width=None, height=None) Picture of an area of the screen; with no numbers, the whole screen.
+vyrn.pixel(x, y) Color of one screen pixel as (red, green, blue), each 0-255.
+vyrn.on_screen(name, x=None, y=None, match=0.9) True if the Snapshot picture called name is showing at x, y on the screen right now.
+vyrn.press(key) Tap a key (or a combo like "ctrl+c") right now, e.g. in restart(): vyrn.press("space").
+vyrn.wait(seconds) Pause for this many seconds, e.g. vyrn.wait(0.5) to give a game time to restart.
+vyrn.canvas(width, height, color="black") A blank picture to draw on: picture.dot(x, y, color) and picture.box(x, y, width, height, color).
+vyrn.show(name, value) Show a number, text or picture on the dashboard under this name, e.g. vyrn.show("speed", 3.5).
+vyrn.choice
+vyrn.tick
+vyrn.round
+vyrn.game
+vyrn.events
+vyrn.connected
+vyrn.send(type, **fields) Send a message to the game now, like vyrn.send("restart") or vyrn.send("speed", value=2.0).
+Canvas.dot(x, y, color="white") Color one pixel: x counts columns from the left, y counts rows from the top.
+Canvas.box(x, y, width, height, color="white") Fill a rectangle whose top-left corner is (x, y).

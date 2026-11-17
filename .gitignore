@@ -1,0 +1,11 @@
+build/
+build-*/
+dist/
+__pycache__/
+*.pyc
+.pytest_cache/
+.lgd-*
+brains/
+runs/
+.vyrn-*
+.github/

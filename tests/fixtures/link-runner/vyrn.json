@@ -1,0 +1,9 @@
+{
+  "name": "Link runner",
+  "template": "link-runner",
+  "description": "Try Vyrn Link without a real game: a tiny runner game jumps over spikes when the AI says so",
+  "decisions_per_second": 30,
+  "round_seconds": 60,
+  "link": {"port": 7457},
+  "advanced": {"explore_ticks": 5000}
+}

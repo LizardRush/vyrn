@@ -1,0 +1,21 @@
+#!/bin/sh
+# Vyrn panic stop: instantly kill every Vyrn Python worker that may be pressing keys.
+# Bound to Ctrl+Alt+Esc (and Shift+Ctrl+Alt+Esc) in labwc by ./install.sh --keyboard.
+# The kernel releases every key the AI held as soon as its virtual keyboard closes.
+
+dir="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/vyrn"
+[ -d "$dir" ] || exit 0
+: > "$dir/panic"   # tells the app the stop came from the panic key
+
+for f in "$dir"/*.pid; do
+  [ -f "$f" ] || continue
+  # file format: "<pid> <start time from /proc/pid/stat field 22> <process group>"
+  read -r pid start pgid < "$f" || continue
+  [ -r "/proc/$pid/stat" ] || { rm -f "$f"; continue; }
+  # Field 22 counted after the "(comm)" part, which may contain spaces.
+  now_start=$(sed 's/^.*) //' "/proc/$pid/stat" | awk '{print $20}')
+  [ "$now_start" = "$start" ] || { rm -f "$f"; continue; }   # pid was reused: not ours
+  tr '\0' ' ' < "/proc/$pid/cmdline" | grep -q vyrn_worker || continue
+  kill -KILL -- "-$pgid" 2>/dev/null || kill -KILL "$pid" 2>/dev/null
+done
+exit 0

@@ -1,0 +1,7 @@
+{
+  "name": "My game",
+  "template": "my-game",
+  "start_program": "",
+  "decisions_per_second": 10,
+  "round_seconds": 60
+}

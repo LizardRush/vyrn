@@ -1,0 +1,44 @@
+@NAME@
+======
+
+This folder holds an AI that learned to play. You don't need the Vyrn app to run it.
+
+To run it
+---------
+1. You need Python 3.10 or newer.
+2. Install the small helper it plays with (once). Open a terminal in this folder and type:
+
+       pip install @WHEEL@
+
+   If pip tells you the system is "externally managed", make a private Python first:
+
+       python3 -m venv venv
+       venv/bin/pip install @WHEEL@
+       venv/bin/python play.py
+
+3. Start it:
+
+       python3 play.py
+
+   It prints how many points it gets each round. Press Ctrl+C to stop.
+
+Handy extras
+------------
+   python3 play.py --rounds 20      play 20 rounds, then stop
+   python3 play.py --speed 0        a game that runs inside the computer: go as fast as possible
+   python3 play.py --view           show a small window with what the AI sees
+   python3 play.py --help           everything else
+
+Games on your screen
+--------------------
+If the AI plays a real game with the keyboard, it only tells you which keys it would press. To let it press them
+for real, add --allow-keys. You get 3 seconds to click on your game window, and the AI only presses keys while that
+window is in front. Hands off the keyboard while it plays.
+
+What is in this folder
+----------------------
+   brain.vrl      what the AI learned
+   play.py        starts it
+   *.py, vyrn.json   the scripts and settings it was taught with (open them in a text editor to see how it works)
+
+Made with Vyrn @VERSION@.

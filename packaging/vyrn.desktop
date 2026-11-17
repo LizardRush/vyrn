@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Version=1.5
+Name=Vyrn
+GenericName=AI trainer
+Comment=Teach an AI to play games with three small Python scripts
+Exec=vyrn %F
+Icon=vyrn
+Terminal=false
+Categories=Development;Education;
+MimeType=application/x-vyrn-project;application/x-vyrn-brain;
+StartupWMClass=vyrn
+Keywords=AI;reinforcement;learning;neural;game;

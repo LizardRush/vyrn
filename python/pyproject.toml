@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vyrn"
+version = "0.1.0"
+description = "Vyrn: teach an AI to play games with three small Python scripts (the library, and the player for compiled AIs)"
+requires-python = ">=3.10"
+dependencies = ["numpy", "Pillow"]
+
+[project.optional-dependencies]
+keys = ["evdev; sys_platform == 'linux'"]
+
+[tool.setuptools]
+packages = ["vyrn", "vyrn.runtime", "vyrn._platform"]
+
+[tool.setuptools.package-data]
+"vyrn.runtime" = ["templates/*.in"]

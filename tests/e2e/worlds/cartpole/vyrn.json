@@ -1,0 +1,5 @@
+{
+  "name": "CartPole",
+  "decisions_per_second": 50,
+  "round_ticks": 500
+}

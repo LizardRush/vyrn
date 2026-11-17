@@ -1,0 +1,6 @@
+{
+  "name": "Balance",
+  "template": "balance",
+  "description": "A pole on a cart that keeps tipping over. Teach the AI to keep it upright (numbers, learns in a minute or two)",
+  "round_ticks": 500
+}

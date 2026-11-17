@@ -1,0 +1,7 @@
+{
+  "name": "Demo game",
+  "template": "demo-game",
+  "start_program": "python3 demo_game.py",
+  "decisions_per_second": 10,
+  "round_seconds": 120
+}

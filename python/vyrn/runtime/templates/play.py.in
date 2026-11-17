@@ -1,0 +1,14 @@
+#!/usr/bin/env python3
+"""@NAME@: a trained Vyrn AI. Run it with:  python3 play.py   (Ctrl+C stops it)
+
+Needs Python 3.10+ and the vyrn package:  pip install @WHEEL@
+"""
+import pathlib
+import sys
+
+try:
+    import vyrn.runtime
+except ImportError:
+    sys.exit("This AI needs the vyrn Python package. Install it with:  pip install @WHEEL@")
+
+sys.exit(vyrn.runtime.main(pathlib.Path(__file__).resolve().parent, sys.argv[1:]))

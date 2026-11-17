@@ -1,0 +1,23 @@
+# The MCP server for coding agents (docs/dev/mcp.md): library vyrn_mcp + standalone vyrn-mcp.
+# `vyrn-cli mcp` calls the same run_mcp_server(). The sharing tools (tools_share.cpp) use vyrn_package.
+if(NOT VYRN_WITH_APP_PARTS OR NOT TARGET vyrn_project OR NOT TARGET vyrn_package)
+  return()
+endif()
+file(GLOB VYRN_MCP_SOURCES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp")
+list(FILTER VYRN_MCP_SOURCES EXCLUDE REGEX "/main\\.cpp$")
+if(NOT VYRN_MCP_SOURCES)
+  return()
+endif()
+add_library(vyrn_mcp STATIC ${VYRN_MCP_SOURCES})
+set_target_properties(vyrn_mcp PROPERTIES CXX_STANDARD 20 CXX_STANDARD_REQUIRED ON)
+target_include_directories(vyrn_mcp PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")
+target_compile_definitions(vyrn_mcp PRIVATE VYRN_VERSION="${PROJECT_VERSION}")
+target_link_libraries(vyrn_mcp PUBLIC vyrn_package vyrn_project vyrn_core nlohmann_json::nlohmann_json
+                               PRIVATE vyrn_warnings)
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/main.cpp")
+  add_executable(vyrn-mcp main.cpp)
+  set_target_properties(vyrn-mcp PROPERTIES CXX_STANDARD 20 CXX_STANDARD_REQUIRED ON)
+  target_link_libraries(vyrn-mcp PRIVATE vyrn_mcp vyrn_warnings)
+  vyrn_executable(vyrn-mcp)
+  install(TARGETS vyrn-mcp RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+endif()

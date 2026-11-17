@@ -1,0 +1,8 @@
+{
+  "name": "Catch in real time",
+  "decisions_per_second": 20,
+  "round_seconds": 60,
+  "advanced": {
+    "explore_ticks": 10000
+  }
+}
