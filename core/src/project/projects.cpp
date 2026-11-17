@@ -249,9 +249,10 @@ struct KnownTemplate {
 
 // The shipped templates in the order New project shows them: the presets, then the demos.
 constexpr KnownTemplate kKnownTemplates[] = {
-    {"balance", "A pole on a cart keeps tipping over. Teach the AI to hold it up (learns in a minute or two)", false},
-    {"demo-game", "A simple dodge game to try real-game training, no setup needed", false},
+    {"blank-sim", "An empty simulated game: like a real game, but you write it in world.py and it trains fast", false},
     {"my-game", "Train on any game on your screen: pick its area and map keys to choices", false},
+    {"balance", "A pole on a cart keeps tipping over. Teach the AI to hold it up (learns in a minute or two)", true},
+    {"demo-game", "A simple dodge game to try real-game training, no setup needed", true},
     {"catch-pictures", "Catch falling fruit from a 10x10 picture. A quick first look at how it all works", true},
     {"catch-numbers", "The same fruit game, but the AI is handed three numbers instead of a picture", true},
 };

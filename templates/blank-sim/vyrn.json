@@ -1,0 +1,6 @@
+{
+  "name": "Blank simulation",
+  "template": "blank-sim",
+  "description": "An empty simulated game to build your own in world.py (starts as a tiny placeholder that already trains)",
+  "round_ticks": 300
+}

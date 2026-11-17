@@ -6,7 +6,7 @@ so it doesn't. There's no code to write yet. The project is ready to go.
 1. **Open Vyrn.** On the Raspberry Pi it's in the menu (Programming → Vyrn). On a Mac, press ⌘ Space and type
    *Vyrn*. On Windows, open the Start menu and type *Vyrn*. Not installed yet? See the README, or
    [Vyrn on a Mac or a Windows PC](08-mac-and-windows.md).
-2. Click **New project**, pick **Balance**, name it `balance` and click **Create**.
+2. Click **New project**, pick **Demo: Balance**, name it `balance` and click **Create**.
 3. Press **Train** (▶). Vyrn checks your scripts first, then the AI starts playing.
    - At the start it just flails around ("Exploring 100%"). That's on purpose: it has to try things to learn.
    - Keep an eye on the **Points** chart at the bottom. Every dot is one round, and the thick line is the average.

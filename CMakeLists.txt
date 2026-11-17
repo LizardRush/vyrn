@@ -24,6 +24,7 @@ else()
 endif()
 
 option(VYRN_GUI "Build the Qt app (vyrn)" ON)
+option(VYRN_BUILD_TESTS "Build the tests (the install scripts turn this off: it saves a lot of build time)" ON)
 option(VYRN_FOCUS "Build the Wayland focus helper (vyrn-focus; Linux only)" ${VYRN_LINUX})
 # The app, the project API (vyrn_project), sharing files (vyrn_package) and the MCP server. OFF builds only the
 # core, vyrn-cli's check/train/watch/bench and the core's tests.
@@ -174,7 +175,9 @@ set(VYRN_SUBDIRS core cli/mcp cli app)
 if(VYRN_LINUX)
   list(APPEND VYRN_SUBDIRS focus)   # vyrn-focus: Wayland (wlr-foreign-toplevel) only
 endif()
-list(APPEND VYRN_SUBDIRS tests)
+if(VYRN_BUILD_TESTS)
+  list(APPEND VYRN_SUBDIRS tests)
+endif()
 foreach(dir IN LISTS VYRN_SUBDIRS)
   if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/${dir}/CMakeLists.txt")
     add_subdirectory(${dir})

@@ -173,9 +173,9 @@ TEST(Templates, ShippedTemplatesComeInTheirOrder) {
   const std::vector<vyrn::TemplateInfo> templates = vyrn::list_templates(VYRN_SOURCE_DIR);
   std::vector<std::string> ids;
   for (const auto& t : templates) ids.push_back(t.id);
-  const std::vector<std::string> first = {"balance", "demo-game", "my-game", "catch-pictures", "catch-numbers"};
+  const std::vector<std::string> first = {"blank-sim", "my-game", "balance", "demo-game", "catch-pictures", "catch-numbers"};
   ASSERT_GE(ids.size(), first.size());
-  EXPECT_EQ(std::vector<std::string>(ids.begin(), ids.begin() + 5), first);
+  EXPECT_EQ(std::vector<std::string>(ids.begin(), ids.begin() + 6), first);
   EXPECT_EQ(ids.size(), first.size());   // nothing else ships as a preset
   for (size_t i = 0; i < first.size(); ++i) EXPECT_FALSE(templates[i].description.empty()) << templates[i].id;
   for (const auto& t : templates) {
@@ -184,13 +184,15 @@ TEST(Templates, ShippedTemplatesComeInTheirOrder) {
     EXPECT_TRUE(fs::is_regular_file(fs::path(t.path) / "vyrn.json")) << t.path;
     EXPECT_EQ(t.mode, fs::exists(fs::path(t.path) / "world.py") ? "sim" : "realtime") << t.id;
   }
-  EXPECT_EQ(templates[0].mode, "sim");        // balance
-  EXPECT_EQ(templates[1].mode, "realtime");   // demo-game
-  EXPECT_EQ(templates[2].mode, "realtime");   // my-game
-  EXPECT_EQ(templates[3].mode, "sim");
+  EXPECT_EQ(templates[0].mode, "sim");        // blank-sim
+  EXPECT_EQ(templates[1].mode, "realtime");   // my-game
+  EXPECT_EQ(templates[2].mode, "sim");        // balance
+  EXPECT_EQ(templates[3].mode, "realtime");   // demo-game
   EXPECT_EQ(templates[4].mode, "sim");
-  EXPECT_TRUE(templates[3].demo && templates[4].demo && !templates[0].demo);
-  EXPECT_EQ(templates[3].name, "Catch (pictures)");
+  EXPECT_EQ(templates[5].mode, "sim");
+  EXPECT_TRUE(templates[2].demo && templates[3].demo && templates[4].demo && templates[5].demo);
+  EXPECT_FALSE(templates[0].demo || templates[1].demo);
+  EXPECT_EQ(templates[4].name, "Catch (pictures)");
 }
 
 TEST(Templates, DescriptionsAndOrderOfOtherTemplates) {
@@ -213,13 +215,14 @@ TEST(Templates, DescriptionsAndOrderOfOtherTemplates) {
   std::vector<std::string> ids;
   for (const auto& tmpl : templates) ids.push_back(tmpl.id);
   EXPECT_EQ(ids,
-            (std::vector<std::string>{"demo-game", "my-game", "catch-pictures", "catch-numbers", "alpha", "link-runner",
+            (std::vector<std::string>{"my-game", "demo-game", "catch-pictures", "catch-numbers", "alpha", "link-runner",
                                       "zeta"}));
 
-  EXPECT_EQ(templates[0].name, "demo-game");   // unreadable vyrn.json: the folder name
-  EXPECT_EQ(templates[0].description, "A simple dodge game to try real-game training, no setup needed");
+  EXPECT_EQ(templates[1].name, "demo-game");   // unreadable vyrn.json: the folder name
+  EXPECT_EQ(templates[1].description, "A simple dodge game to try real-game training, no setup needed");
+  EXPECT_TRUE(templates[1].demo);
+  EXPECT_EQ(templates[0].description, "Mine wins");
   EXPECT_FALSE(templates[0].demo);
-  EXPECT_EQ(templates[1].description, "Mine wins");
   EXPECT_EQ(templates[2].description,
             "Catch falling fruit from a 10x10 picture. A quick first look at how it all works");
   EXPECT_TRUE(templates[2].demo);

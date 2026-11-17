@@ -332,7 +332,7 @@ function Invoke-App {
 
   Say "Configuring the build in $Build"
   Invoke-Checked 'Configuring (cmake)' 'cmake' @('-S', $Here, '-B', $Build, '-G', 'Ninja',
-    '-DCMAKE_BUILD_TYPE=RelWithDebInfo', '-DCMAKE_C_COMPILER=cl', '-DCMAKE_CXX_COMPILER=cl',
+    '-DCMAKE_BUILD_TYPE=RelWithDebInfo', '-DVYRN_BUILD_TESTS=OFF', '-DCMAKE_C_COMPILER=cl', '-DCMAKE_CXX_COMPILER=cl',
     "-DCMAKE_INSTALL_PREFIX=$(ConvertTo-CMakePath $Prefix)",
     "-DCMAKE_PREFIX_PATH=$(ConvertTo-CMakePath $QtDir)",
     "-DTorch_DIR=$(ConvertTo-CMakePath $TorchDir)/share/cmake/Torch",

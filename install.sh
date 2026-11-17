@@ -182,7 +182,7 @@ do_desktop() {
 do_app() {
   say "Building Vyrn"
   [ -f "$HERE/CMakeLists.txt" ] || die "no CMakeLists.txt in $HERE"
-  cmake -S "$HERE" -B "$HERE/build" -G Ninja -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX="$PREFIX"
+  cmake -S "$HERE" -B "$HERE/build" -G Ninja -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX="$PREFIX" -DVYRN_BUILD_TESTS=OFF
   cmake --build "$HERE/build" -j"$JOBS"
   say "Installing to $PREFIX"
   cmake --install "$HERE/build"

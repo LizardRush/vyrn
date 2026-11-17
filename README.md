@@ -100,17 +100,18 @@ so).
 
 Open **Vyrn** (Linux: the menu, Programming; macOS: Launchpad or Spotlight; Windows: the Start menu), click **New
 project**, pick **Demo: Catch (pictures)** and press **Train**. Within a few minutes the AI usually catches almost
-every fruit. (Want a different first game? **Balance** is a pole on a cart that the AI has to keep upright.) [Your first AI in 5 minutes](docs/user/01-first-ai.md) walks you through it.
+every fruit. (Want a different first game? **Demo: Balance** is a pole on a cart that the AI has to keep upright.) [Your first AI in 5 minutes](docs/user/01-first-ai.md) walks you through it.
 
 ## Templates
 
 | Template | What it is |
 |---|---|
-| **Balance** | A new simulation game: keep a pole upright on a cart |
+| **Blank simulation** | An empty simulated game: write your own in `world.py` (starts as a tiny placeholder that already trains) |
+| **My game** | Any game on your screen: pick its area and map keys to choices |
+| **Demo: Balance** | A simulation: keep a pole upright on a cart (learns in a minute or two) |
 | **Demo: Catch (pictures)** | Your first AI: catch falling fruit from a 10×10 picture (a simulation; learns in minutes) |
 | **Demo: Catch (numbers)** | The same game, but the AI sees three numbers instead of a picture |
-| **Demo game** | A simple "dodge the blocks" game for trying real-game training, no edits needed |
-| **My game** | Any game on your screen: pick its area and map keys to choices |
+| **Demo: Demo game** | A simple "dodge the blocks" game for trying real-game training, no edits needed |
 
 ## The command line
 

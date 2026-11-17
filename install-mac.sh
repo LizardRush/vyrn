@@ -194,7 +194,7 @@ do_app() {
 
   say "Configuring the build in $BUILD"
   cmake -S "$HERE" -B "$BUILD" -G Ninja -DCMAKE_BUILD_TYPE=RelWithDebInfo \
-    -DCMAKE_INSTALL_PREFIX="$PREFIX" \
+    -DCMAKE_INSTALL_PREFIX="$PREFIX" -DVYRN_BUILD_TESTS=OFF \
     -DCMAKE_PREFIX_PATH="$(brew --prefix qt);$BREW_PREFIX" \
     -DTorch_DIR="$LIBTORCH_DIR/share/cmake/Torch" \
     -DPython3_EXECUTABLE="$PY"
