@@ -7,8 +7,7 @@ Python files and Vyrn does the learning.
 - `responses.py`: **what its choices do** (`left = "a"` holds the A key, `jump = "tap space"` taps Space)
 - `points.py`: **how it scores** (a number every tick: +1 for staying alive, −10 for crashing)
 
-Think of Python as the microcontroller and the app as the chip. Your scripts just wire the game to the AI. Vyrn's C++
-core (the chip) builds the neural network (a DQN), plays thousands of rounds and learns which choice earns the most
+Vyrn's C++ core builds the neural network (a DQN), plays thousands of rounds and learns which choice earns the most
 points. You never touch the network.
 
 A project with a `world.py` is a **simulation**: the game is written in Python and runs inside Vyrn, much faster than
@@ -17,19 +16,15 @@ keys.
 
 Vyrn is a Qt 6 desktop app with an editor, a dashboard and a points chart. It also ships a command-line tool
 (`vyrn-cli`) and an MCP server for AI coding agents. It runs on Raspberry Pi OS (Debian 13) with the labwc Wayland
-desktop, on macOS 13 or newer with Apple Silicon, and on Windows 10/11 (x64). You build it on the machine that runs
-it, and an install script does all of that for you.
+desktop, on macOS 13 or newer with Apple Silicon, and on Windows 10/11 (x64). It builds on the machine that runs it,
+and the install script handles that.
 
 ## Install on macOS / Windows / Linux
 
-Every script is safe to run again: it checks each step and only fixes what's missing. The first run downloads about
-2 GB and compiles for 15–30 minutes. Mac and Windows details and troubleshooting are in
+Every script is safe to run again. The first run downloads about 2 GB and compiles for 15–30 minutes. Mac and Windows details and troubleshooting are in
 [Vyrn on a Mac or a Windows PC](docs/user/08-mac-and-windows.md).
 
 ### The quick way: one line
-
-Each of these downloads Vyrn into a temporary folder, builds it, installs the app and deletes the download. If you've
-already cloned the repository, skip to the steps below.
 
 ```bash
 # Linux (Raspberry Pi OS): asks for your password once, for the system packages
@@ -43,16 +38,13 @@ curl -fsSL https://raw.githubusercontent.com/LizardRush/vyrn/main/get-mac.sh | b
 irm https://raw.githubusercontent.com/LizardRush/vyrn/main/get-windows.ps1 | iex
 ```
 
-On Linux the temporary folder lives in RAM if you have plenty to spare, and on disk if not. Put `VYRN_KEYBOARD=1` in
-front of `bash` to also set up key presses for real games.
+On Linux, put `VYRN_KEYBOARD=1` in front of `bash` to also set up key presses for real games.
 
 ### Updating
 
-Vyrn checks once a day for a newer version. If there is one, the home screen shows "A newer version of Vyrn is
-available". **Update now** opens a terminal that runs the same one-line command as above (the build takes 15-30
-minutes the first time, less after), then Vyrn reopens. You can also use **Check for updates** on the home screen, or
-turn the daily check off with "Don't check automatically" (or in a project's Settings). A copy built from a git
-checkout has no version stamp, so it can't tell.
+Vyrn checks once a day for a newer version and says so on the home screen. **Update now** runs the one-line command
+above in a terminal, then Vyrn reopens. **Check for updates** checks on demand, and "Don't check automatically" turns
+the daily check off. A copy built from a git checkout has no version stamp, so it can't tell.
 
 ### macOS (Apple Silicon)
 
@@ -63,14 +55,14 @@ Install [Homebrew](https://brew.sh) first. Then, in Terminal, from this folder:
 ./install-mac.sh --app    # builds Vyrn and installs ~/Applications/Vyrn.app; vyrn-cli goes to ~/.local/bin
 ```
 
-`./install-mac.sh` with no option does both. No sudo needed. For real games, macOS has to allow Vyrn two things in
-**System Settings → Privacy & Security** (simulations need neither):
+With no option it does both, and needs no sudo. Real games need two permissions in **System Settings → Privacy &
+Security** (simulations need neither):
 
 - **Accessibility**, so the AI can press keys;
 - **Screen Recording** (macOS 15: **Screen & System Audio Recording**), so it can see the game.
 
-Click **+**, choose **Vyrn** in `~/Applications`, switch it on. Vyrn's setup window checks both and opens the right
-page. After a rebuild, remove Vyrn from both lists (**−**) and add it again.
+Click **+**, choose **Vyrn** in `~/Applications`, switch it on. After a rebuild, remove Vyrn from both lists (**−**)
+and add it again.
 
 ### Windows 10/11
 
@@ -97,15 +89,13 @@ From this folder, in a terminal:
 ./install.sh --keyboard   # only for real games: lets Vyrn press keys, adds the panic keys (sudo)
 ```
 
-`./install.sh` with no option does all three. After `--keyboard` you may need to log out and back in once; it tells
-you if so.
+With no option it does all three. After `--keyboard` you may need to log out and back in once.
 
 ### Then
 
 Open **Vyrn** (Linux: the menu, Programming; macOS: Launchpad or Spotlight; Windows: the Start menu), click **New
 project**, pick **Demo: Catch (pictures)** and press **Train**. Within a few minutes the AI usually catches almost
-every fruit. If you'd rather start with something else, **Demo: Balance** is a pole on a cart that the AI has to keep
-upright. [Your first AI in 5 minutes](docs/user/01-first-ai.md) walks you through it.
+every fruit. [Your first AI in 5 minutes](docs/user/01-first-ai.md) goes through it step by step.
 
 ## Templates
 
@@ -137,14 +127,14 @@ vyrn-cli import <file.vrl> --into <project>  # add a shared brain to a project
 vyrn-cli trust <project>                     # let Vyrn run an imported project's Python (read it first)
 ```
 
-`vyrn-cli --help` lists every option. Real games need `--allow-input` before they can press keys, and simulations never
-press any. If you don't have the app at all, `python3 python/tools/check.py <project>` runs a Check too.
+`vyrn-cli --help` lists every option. Real games need `--allow-input` before they can press keys. Without the app,
+`python3 python/tools/check.py <project>` runs a Check too.
 
 ## Coding agents
 
-Vyrn has an MCP server, so Claude Code, Codex or Gemini CLI can create projects, write the scripts, run Check, train
-and watch simulations, and see what the AI sees. Connecting one takes a single line (the **Connect an AI agent**
-button in Vyrn's start window shows these with Copy buttons):
+Claude Code, Codex and Gemini CLI can create projects, write the scripts, run Check, train and watch simulations, and
+see what the AI sees, through Vyrn's MCP server. The **Connect an AI agent** button in the start window has these with
+Copy buttons:
 
 ```bash
 claude mcp add --scope user vyrn -- ~/.local/bin/vyrn-cli mcp
@@ -168,19 +158,18 @@ for agents. More: [Let a coding agent help](docs/user/05-ai-agents.md).
   this brain (.vrl)…**.
 
 Double-click a received file to open it. A `.vrl` is only numbers and never runs code. A `.vrlp` holds someone else's
-Python, so it opens **untrusted**: Vyrn shows you the scripts but won't run them until you've read them and pressed
-**Trust this project**. More: [Share what you trained](docs/user/06-sharing.md).
+Python, so it opens **untrusted**: Vyrn won't run the scripts until you've read them and pressed **Trust this
+project**. More: [Share what you trained](docs/user/06-sharing.md).
 
 **Compile** (toolbar, or `vyrn-cli compile`) turns a trained AI into a folder that plays with plain Python, no Vyrn app
 needed: [Take your AI out of Vyrn](docs/user/09-compile.md).
 
 ## Vyrn Link and Geometry Dash
 
-Some games can tell Vyrn exactly what's happening. With **Vyrn Link**, a game (or a mod inside it) connects to Vyrn
-over a WebSocket (port 7457 by default, with a 6-digit pairing code for other computers), sends its numbers and gets
+With **Vyrn Link**, a game (or a mod inside it) connects to Vyrn over a WebSocket (port 7457 by default, with a 6-digit pairing code for other computers), sends its numbers and gets
 the AI's buttons back. Nothing is read from the screen and no keys are pressed, so Geometry Dash can run on your PC
-while Vyrn learns on the Pi. You can try it first with the fake runner game in `tests/fixtures/link-runner`. The
-Geometry Dash mod (with Geode) is yours to write.
+while Vyrn learns on the Pi. There's a fake runner game in `tests/fixtures/link-runner` to try it on. The Geometry
+Dash mod (with Geode) is yours to write.
 
 - [Geometry Dash with Vyrn Link](docs/user/07-geometry-dash.md)
 - [The Vyrn Link protocol, for mod writers](docs/user/vyrn-link.md); `tools/link/link_test_server.py` stands in for
@@ -188,7 +177,7 @@ Geometry Dash mod (with Geode) is yours to write.
 
 ## Safety with real games
 
-When a real game trains, the AI presses keys on your desktop, so Vyrn puts some limits on that:
+When a real game trains, the AI presses keys on your desktop. Vyrn limits that:
 
 - The AI presses keys only in the game window you clicked during the countdown. **Click Vyrn** (or any other
   window) and it holds at once and releases every key; click the game to let it continue.
@@ -201,8 +190,8 @@ More: [Teaching it a real game](docs/user/03-real-games.md).
 
 ## First real-game test
 
-A checklist for the first time you train a real game (about an hour). It needs `./install.sh --keyboard` first on
-Linux, and the two permissions on macOS.
+A checklist for your first real game (about an hour). It needs `./install.sh --keyboard` on Linux and the two
+permissions on macOS.
 
 1. **Demo game, zero edits.** **New project** → **Demo game** → **Create**, then **Train**. Vyrn starts the game
    (its Start program, `python3 demo_game.py`), checks the scripts and asks "The AI will press keys". If the game
@@ -220,8 +209,7 @@ Linux, and the two permissions on macOS.
    (the player stops sliding, nothing repeats). On Linux, `grep -c "Vyrn AI keyboard" /proc/bus/input/devices`
    also prints `0`.
 5. **It learns.** Train for 30–60 minutes. The average line in the **Points** chart should end up clearly higher
-   than at the start: roughly twice as long a survival time as random play. That's a rough guide, and every run is a
-   little different.
+   than at the start: roughly twice as long a survival time as random play. Every run is a little different.
 
 ## Building and testing
 
@@ -245,9 +233,8 @@ folders on PATH). There, CMake downloads nlohmann_json, GoogleTest and zlib when
 `pytest` (macOS: `python3 -m pip install --user --break-system-packages pytest`; Windows: `py -m pip install pytest`).
 
 **CI:** [.github/workflows/ci.yml](.github/workflows/ci.yml) builds Vyrn and runs the unit tests on Ubuntu 24.04,
-macOS 14 (Apple Silicon) and Windows Server 2022, with the install scripts on the Mac and Windows. It has **not run
-yet**: I wrote it before the repository was on GitHub, so expect to fix a few things on its first run. Until then, the
-Mac and Windows builds are checked only by compiling them there (docs/dev/platforms.md, section 4).
+macOS 14 (Apple Silicon) and Windows Server 2022, using the install scripts on the Mac and Windows. It hasn't run
+yet, so expect a few fixes on its first run.
 
 ## Documentation
 
