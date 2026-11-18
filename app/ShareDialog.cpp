@@ -357,7 +357,7 @@ void ShareDialog::Ui::startSave() {
   if (saving) return;
   error->hide();
   if (description->toPlainText().trimmed().size() > kMaxDescription) {
-    showError(QStringLiteral("The description is too long: please keep it under %1 characters.")
+    showError(QStringLiteral("The description is too long. Keep it under %1 characters.")
                   .arg(QLocale().toString(kMaxDescription)));
     return;
   }
@@ -381,7 +381,7 @@ void ShareDialog::Ui::saveTo(QString out, bool overwrite) {
   lastError.clear();
   savedFile.clear();
   if (description->toPlainText().trimmed().size() > kMaxDescription) {
-    lastError = QStringLiteral("The description is too long: please keep it under %1 characters.")
+    lastError = QStringLiteral("The description is too long. Keep it under %1 characters.")
                     .arg(QLocale().toString(kMaxDescription));
     showError(lastError);
     return;

@@ -40,7 +40,7 @@ QString lockRefusal(const std::string& project) {
                           "the project folder. Check that the folder still exists and that you can write to it.");
   }
   if (holder->by == "agent") {
-    return QStringLiteral("An AI agent is training this project right now. Stop it first, or wait until it is done.");
+    return QStringLiteral("An AI agent is training this project right now. Stop it first, or wait for it to finish.");
   }
   if (holder->by == "cli") {
     return QStringLiteral("vyrn-cli is training or watching this project in a terminal. Stop it there first.");

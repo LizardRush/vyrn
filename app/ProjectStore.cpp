@@ -107,7 +107,7 @@ ProjectCard project(const QString& path) {
 QString createProject(const QString& name, const TemplateCard& tmpl, QString* error) {
   const QString trimmed = name.simplified();
   if (trimmed.isEmpty()) {
-    setError(error, QStringLiteral("Please give the project a name."));
+    setError(error, QStringLiteral("Give the project a name."));
     return {};
   }
   try {

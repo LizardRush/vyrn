@@ -307,7 +307,7 @@ bool Editor::load(const QString& path, QString* error) {
   if (!file.open(QIODevice::ReadOnly)) {
     if (error) {
       *error = file.exists() ? QStringLiteral("Vyrn couldn't open %1: %2").arg(fileName(), file.errorString())
-                             : QStringLiteral("%1 doesn't exist yet: it is created when you save.").arg(fileName());
+                             : QStringLiteral("%1 doesn't exist yet. It's created when you save.").arg(fileName());
     }
     setText(QString());
     SendScintilla(SCI_EMPTYUNDOBUFFER);

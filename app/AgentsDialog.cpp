@@ -291,7 +291,7 @@ AgentsDialog::AgentsDialog(QWidget* parent) : QDialog(parent) {
         else if (output->toPlainText().contains(QLatin1String("already exists"), Qt::CaseInsensitive))
           finish(true, QStringLiteral("Vyrn was already added to Claude Code. Nothing to do."));
         else
-          finish(false, QStringLiteral("That didn't work (exit code %1). The output above says why.").arg(code));
+          finish(false, QStringLiteral("That didn't work (exit code %1). The output above shows why.").arg(code));
         process->deleteLater();
       });
       timer->start(60000);

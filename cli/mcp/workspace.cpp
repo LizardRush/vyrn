@@ -257,7 +257,7 @@ std::string Workspace::allowed_text() const {
 bool Workspace::resolve(const std::string& raw, Project& out, std::string& why) const {
   const std::string arg = trim(raw);
   if (arg.empty()) {
-    why = "Please give a project: its folder name (vyrn_list_projects shows them) or its absolute path.";
+    why = "Say which project: its folder name (vyrn_list_projects shows them) or its absolute path.";
     return false;
   }
   for (const char c : arg) {

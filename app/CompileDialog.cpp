@@ -259,7 +259,7 @@ void CompileDialog::Ui::startCompile() {
   error->hide();
   const QString folder = target();
   if (folder.isEmpty()) {
-    showError(QStringLiteral("Please choose a folder for the compiled AI."));
+    showError(QStringLiteral("Choose a folder for the compiled AI."));
     return;
   }
   bool overwrite = false;
